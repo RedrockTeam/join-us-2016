@@ -1,0 +1,20 @@
+body {
+  width: 100%;
+}
+.stage {
+  margin-top: 200px;
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  perspective: 800px;
+}
+.container {
+    transform-style: preserve-3d;
+}
+
+.item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform: translateX(100px);
+}
