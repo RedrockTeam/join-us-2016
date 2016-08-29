@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["cl","args","console","log"],"mappings":";;AAAA,IAAMA,KAAK,SAALA,EAAK,CAACC,IAAD,EAAU;AACjBC,YAAQC,GAAR,CAAYF,IAAZ;AACH,CAFD","file":"index.js","sourcesContent":["const cl = (args) => {\n    console.log(args);\n}"],"sourceRoot":"/source/"}
