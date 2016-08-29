@@ -9,4 +9,4 @@ gulp watch;
 ```
 
 
-author: 冯秋名
+author: 冯秋明

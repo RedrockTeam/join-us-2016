@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var cl = function cl(args) {
-    console.log(args);
-};
+$('.item').each(function (index, item) {
+    item.style.backgroundImage = 'url("./dest/img/' + (index + 1) + '.png")';
+});
 //# sourceMappingURL=jsmap/index.js.map

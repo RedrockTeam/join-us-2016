@@ -41,8 +41,13 @@ gulp.task('watch', () => {
     browserSync.init({
         server: "./"
     });
-    return gulp.watch('./src/less/**.less', ['less', browserSync.reload])
+    gulp.watch('index.html').on('change', browserSync.reload);
+    gulp.watch('./src/less/**.less', ['less', browserSync.reload]);
+    gulp.watch('./src/js/**.js', ['toes5', browserSync.reload]);
 });
+
+
+
 
 
 gulp.task('build', ['less', 'toes5']);
