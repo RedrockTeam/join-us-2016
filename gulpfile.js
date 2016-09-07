@@ -9,7 +9,9 @@ const babel = require('gulp-babel');
 // less and plugin
 const less = require('gulp-less');
 const LessAutoprefix = require('less-plugin-autoprefix');
-const autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
+const autoprefix = new LessAutoprefix({ 
+    browsers: ['> 1%', 'ie >= 8', 'Chrome > 36', 'Firefox >= 20', 'iOS >= 7'],
+});
 
 
 // browser-sync
@@ -23,17 +25,17 @@ gulp.task('less', () => {
           plugins: [autoprefix]
         }).on('error', (error) => console.log(error)))
         .pipe(sourcemaps.write('./cssmap'))
-        .pipe(gulp.dest('./dest/css'))
+        .pipe(gulp.dest('./dist/css'))
 });
 
 gulp.task('toes5', (args) => {
-    return gulp.src('./src/js/**.js')
+    return gulp.src('./src/js/*.js')
         .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['es2015']
-        }))
+        })).on('error', e => console.log(e))
         .pipe(sourcemaps.write('./jsmap'))
-        .pipe(gulp.dest('./dest/js'));
+        .pipe(gulp.dest('./dist/js'));
 });
 
 
@@ -42,10 +44,9 @@ gulp.task('watch', () => {
         server: "./"
     });
     gulp.watch('index.html').on('change', browserSync.reload);
-    gulp.watch('./src/less/**.less', ['less', browserSync.reload]);
-    gulp.watch('./src/js/**.js', ['toes5', browserSync.reload]);
+    gulp.watch('./src/less/*.less', ['less', browserSync.reload]);
+    gulp.watch('./src/js/*.js', ['toes5', browserSync.reload]);
 });
-
 
 
 

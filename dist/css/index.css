@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+.container {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  overflow: hidden;
+  -webkit-perspective: 980px;
+          perspective: 980px;
+  -webkit-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-transform: translateZ(10px);
+          transform: translateZ(10px);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/*# sourceMappingURL=cssmap/index.css.map */
