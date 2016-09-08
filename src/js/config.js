@@ -8,4 +8,6 @@ const sliceWrapRotateY = 204;
 
 const initStageTranslateZ = 700;
 
+const allowRotateX = 50;
+
 let stopOrienter = false;

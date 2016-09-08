@@ -89,10 +89,10 @@ bodyOnTouchHandler.moving = function (touch) {
     var rotateY = this.startRotateY - touch.diffX / (imageNumber * imageWidth) * 360 * 1.5;
     var rotateX = this.startRotateX + touch.diffY / (imageNumber * imageWidth) * 360 * 1.5;
 
-    if (rotateX > 40) {
-        rotateX = 40;
-    } else if (rotateX < -40) {
-        rotateX = -40;
+    if (rotateX > allowRotateX) {
+        rotateX = allowRotateX;
+    } else if (rotateX < -allowRotateX) {
+        rotateX = -allowRotateX;
     }
 
     $sliceWrap.css({

@@ -96,10 +96,10 @@ bodyOnTouchHandler.moving = function(touch) {
     let rotateY = this.startRotateY - (touch.diffX / (imageNumber * imageWidth) * 360 * 1.5);
     let rotateX = this.startRotateX + (touch.diffY / (imageNumber * imageWidth) * 360 * 1.5);
 
-    if(rotateX > 40) {
-        rotateX = 40;
-    } else if(rotateX < -40) {
-        rotateX = -40;
+    if(rotateX > allowRotateX) {
+        rotateX = allowRotateX;
+    } else if(rotateX < -allowRotateX) {
+        rotateX = -allowRotateX;
     }
 
 

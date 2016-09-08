@@ -15,16 +15,21 @@ var $stage = $('.stage'),
     $sliceWrap.html(str);
     var $slices = $sliceWrap.find('.slice');
 
-    function calculateTranlateZ(imageNumber, width) {
+    function calculateR(imageNumber, width) {
         var deg = 360 / imageNumber / 2;
         return width / 2 / Math.tan(2 * Math.PI * (deg / 360)) - 6;
     }
+    var R = calculateR(imageNumber, imageWidth);
 
     $slices.each(function (index, item) {
         $(item).css({
-            transform: 'rotateY(' + -360 / imageNumber * index + 'deg) translateZ(-' + calculateTranlateZ(imageNumber, imageWidth) + 'px) translateY(-50px)'
+            transform: 'rotateY(' + -360 / imageNumber * index + 'deg) translateZ(-' + R + 'px) translateY(-50px)'
         });
     });
+
+    $sliceWrap.append('<div class=\'sky\' \n                            style=\'width: ' + 1.3 * R + 'px; \n                            height: ' + 2 * R + 'px;\n                            background-image: url("dist/img/loading/100.png");\n                            background-size: 100% 100%;\n                            transform: rotateX(-90deg) translateZ(-600px) translateX(-50%)\'></div>');
+
+    $sliceWrap.append('<div class=\'sky\' \n                            style=\'width: ' + 1.3 * R + 'px; \n                            height: ' + 2 * R + 'px;\n                            background-image: url("dist/img/loading/100.png");\n                            background-size: 100% 100%;\n                            transform: rotateX(90deg) translateZ(-600px) translateX(-50%)\'></div>');
 
     $sliceWrap.css({
         transform: 'translateZ(' + sliceWrapTranslateZ + 'px) rotateY(' + sliceWrapRotateY + 'deg)'
