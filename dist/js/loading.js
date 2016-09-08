@@ -11,6 +11,7 @@ setTimeout(function () {
 // setTimeout(() => {
 window.onload = function () {
     setTimeout(function () {
+        anime.speed = .5;
         anime({
             targets: loadingWrap,
             scale: 0

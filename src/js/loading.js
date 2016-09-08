@@ -10,6 +10,7 @@ setTimeout(() => {
 // setTimeout(() => {
     window.onload = () => {
         setTimeout(() => {
+            anime.speed = .5;
             anime({
                 targets: loadingWrap,
                 scale: 0,
