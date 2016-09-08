@@ -1,40 +1,55 @@
-body {
+* {
   margin: 0;
   padding: 0;
 }
+body {
+  overflow: hidden;
+  max-width: 640px;
+  margin: 0 auto;
+}
 html,
 body,
-.container {
+#view,
+.stage {
   width: 100%;
   height: 100%;
 }
-.container {
-  overflow: hidden;
-  -webkit-perspective: 980px;
-          perspective: 980px;
-  -webkit-perspective-origin: 50% 50%;
-          perspective-origin: 50% 50%;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+#view {
+  -webkit-perspective: 1200px;
+          perspective: 1200px;
 }
-.item {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  -webkit-transform: translateZ(10px);
-          transform: translateZ(10px);
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-}
-.iframe {
+.stage {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform .1s;
+  transition: -webkit-transform .1s;
+  transition: transform .1s;
+  transition: transform .1s, -webkit-transform .1s;
+}
+.slice-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(500px);
+      -ms-transform: translateY(500px);
+          transform: translateY(500px);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.slice {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 1200px;
+  background-size: 100% 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 /*# sourceMappingURL=cssmap/index.css.map */
