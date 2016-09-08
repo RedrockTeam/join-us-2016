@@ -1,13 +1,5 @@
 'use strict';
 
-window.requestAnimFrame = function () {
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
-        window.setTimeout(callback, 1000 / 60);
-    };
-}();
-
-console.log(requestAnimationFrame);
-
 var $sliceWrap = $('.slice-wrap');
 var $stage = $('.stage');
 
@@ -46,7 +38,7 @@ bodyTouchHandler.start = function (touch) {
 };
 
 bodyTouchHandler.moving = function (touch) {
-    var rotateY = startRotateY - touch.diffX / 2880 * 360,
+    var rotateY = startRotateY - touch.diffX / 2880 * 360 * 1.5,
         rotateX = startRotateX - touch.diffY / 2880 * 360;
 
     $sliceWrap.css({

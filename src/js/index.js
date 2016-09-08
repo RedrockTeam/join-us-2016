@@ -1,14 +1,3 @@
-window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame       ||
-          window.webkitRequestAnimationFrame ||
-          window.mozRequestAnimationFrame    ||
-          function( callback ){
-            window.setTimeout(callback, 1000 / 60);
-          };
-})();
-
-console.log(requestAnimationFrame);
-
 let $sliceWrap = $('.slice-wrap');
 let $stage = $('.stage');
 
@@ -55,7 +44,7 @@ bodyTouchHandler.start = (touch) => {
 
 bodyTouchHandler.moving = (touch) => {
     let 
-        rotateY = startRotateY - (touch.diffX / 2880 * 360),
+        rotateY = startRotateY - (touch.diffX / 2880 * 360 * 1.5),
         rotateX = startRotateX - (touch.diffY / 2880 * 360);
     
 
