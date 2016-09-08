@@ -15,8 +15,8 @@ body,
   height: 100%;
 }
 #view {
-  -webkit-perspective: 1200px;
-          perspective: 1200px;
+  -webkit-perspective: 900px;
+          perspective: 900px;
 }
 .stage {
   position: absolute;
@@ -50,6 +50,7 @@ body,
           transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  background-color: #eee;
 }
 
 /*# sourceMappingURL=cssmap/index.css.map */

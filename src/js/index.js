@@ -14,12 +14,11 @@ let $stage = $('.stage');
     $slices.each((index, item) => {
         $(item).css({
             transform: `rotateY(${-360/24*index}deg) 
-                        translateZ(-489px) 
-                        translateY(460px)`
+                        translateZ(-489px)`
         });
     });
     $sliceWrap.css({
-        transform: 'translateX(370px) translateZ(500px) translateY(-600px) rotateY(200deg)'
+        transform: 'translateX(370px) translateZ(500px) translateY(-80px) rotateY(200deg)'
     })
 }());
 
@@ -45,14 +44,14 @@ bodyTouchHandler.start = (touch) => {
 bodyTouchHandler.moving = (touch) => {
     let 
         rotateY = startRotateY - (touch.diffX / 2880 * 360 * 1.5),
-        rotateX = startRotateX - (touch.diffY / 2880 * 360);
+        rotateX = startRotateX + (touch.diffY / 2880 * 360 * 0.7);
     
 
 
     $sliceWrap.css({
         transform: `translateX(370px) 
                     translateZ(500px) 
-                    translateY(-600px) 
+                    translateY(-80px) 
                     rotateY(${rotateY}deg)`
     });
     let stageRotateX = anime.getValue(stage, 'rotateX');
@@ -67,27 +66,6 @@ bodyTouchHandler.moving = (touch) => {
     $stage.css({
         transform: `rotateX(${IcanHandlerIt}) translateZ(${(targetZ - currentZ) * 2}px)`
     })
-
-
-    // anime({
-    //     targets: stage,
-    //     rotateX: stageRotateX,
-    //     translateZ: (element, index) => {
-    //         // console.log(touch.speed * 100);
-    //         return initTranslateZ - Math.log(touch.speed * 1000000) * 100;
-    //     }
-    // });
-    // setTimeout(() => {
-    //    anime({
-    //        targets: stage,
-    //        rotateX: () => {
-    //            return anime.getValue(stage, 'rotateX');
-    //        },
-    //        translateZ: (element, index) => {
-    //            return initTranslateZ;
-    //        }
-    //    }); 
-    // }, 100)
 
     if(rotateX > 40 || rotateX < -40) return;
     let translateZ = anime.getValue(stage, 'translateZ');
@@ -133,7 +111,6 @@ function bodyMoving(handler) {
         startX = touch.clientX;
         startY = touch.clientY;
 
-        // console.log(startX);
 
         touch.movingX = touch.clientX;
         touch.movingY = touch.clientY;

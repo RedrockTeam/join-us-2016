@@ -1,0 +1,1 @@
+{"version":3,"sources":["orient_handler.js"],"names":["o","Orienter","handler","obj","console","log"],"mappings":";;AAAA,IAAKA,IAAI,IAAIC,QAAJ,EAAT;;AAEAD,EAAEE,OAAF,GAAY,UAACC,GAAD,EAAS;AACjBC,YAAQC,GAAR,CAAYF,GAAZ;AACH,CAFD","file":"orient_handler.js","sourcesContent":["let  o = new Orienter();\n\no.handler = (obj) => {\n    console.log(obj);\n}"],"sourceRoot":"/source/"}
