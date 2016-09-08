@@ -2,6 +2,8 @@
 
 var $sliceWrap = $('.slice-wrap');
 var $stage = $('.stage');
+var sliceWrap = $sliceWrap[0];
+var stage = $stage[0];
 
 (function init() {
     var str = '';
@@ -21,9 +23,6 @@ var $stage = $('.stage');
         transform: 'translateX(370px) translateZ(500px) translateY(-80px) rotateY(200deg)'
     });
 })();
-
-var sliceWrap = $sliceWrap[0];
-var stage = $stage[0];
 
 var startRotateY = 0,
     startRotateX = 0;
@@ -63,6 +62,11 @@ bodyTouchHandler.moving = function (touch) {
     });
 };
 
+bodyTouchHandler.end = function (touch) {
+    window.touchendRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
+};
+window.touchendRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
+
 (function moveToInitZ() {
 
     requestAnimationFrame(moveToInitZ);
@@ -70,7 +74,7 @@ bodyTouchHandler.moving = function (touch) {
     var rotateX = anime.getValue(stage, 'rotateX');
 
     if (currentZ < 0) {
-        currentZ /= 2;
+        currentZ /= 3;
         $stage.css({
             transform: 'rotateX(' + rotateX + ') translateZ(' + currentZ + 'px)'
         });
@@ -135,6 +139,7 @@ function bodyMoving(handler) {
     });
     $body.on('touchend', function (e) {
         var touch = e.touches[0];
+        handler.end(touch);
     });
 }
 

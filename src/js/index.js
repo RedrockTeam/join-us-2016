@@ -1,5 +1,9 @@
 let $sliceWrap = $('.slice-wrap');
 let $stage = $('.stage');
+let sliceWrap = $sliceWrap[0];
+let stage = $stage[0];
+
+
 
 (function init() {
     let str = '';
@@ -23,8 +27,7 @@ let $stage = $('.stage');
 }());
 
 
-let sliceWrap = $sliceWrap[0];
-let stage = $stage[0];
+
 
 let 
     startRotateY = 0,
@@ -75,6 +78,10 @@ bodyTouchHandler.moving = (touch) => {
 
 }
 
+bodyTouchHandler.end = (touch) => {
+    window.touchendRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
+}
+window.touchendRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
 
 (function moveToInitZ() {
     
@@ -83,7 +90,7 @@ bodyTouchHandler.moving = (touch) => {
     let rotateX = anime.getValue(stage, 'rotateX');
 
     if(currentZ < 0) {
-        currentZ /= 2;
+        currentZ /= 3;
         $stage.css({
             transform: `rotateX(${rotateX}) translateZ(${currentZ}px)`,
         })
@@ -160,7 +167,7 @@ function bodyMoving(handler) {
     });
     $body.on('touchend', (e) => {
         let touch = e.touches[0];
-
+        handler.end(touch)
     })
 }
 
