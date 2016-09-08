@@ -1,4 +1,6 @@
-* {
+body,
+div,
+html {
   margin: 0;
   padding: 0;
 }
@@ -8,28 +10,31 @@ body {
   margin: 0 auto;
 }
 html,
-body,
-#view,
-.stage {
+body {
   width: 100%;
   height: 100%
 }
 #view {
+  margin: 0 auto;
+  width: 640px;
+  height: 1200px;
+  overflow:hidden;
   perspective:900px;
 }
 .stage {
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 640px;
+  height: 1200px;
   transform-style:preserve-3d;
-  transition: transform .1s;
+  transform-origin: 50% 50% 0;
+  transtion: all .1s;
 }
 .slice-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateY(500px);
+  position: relative;
+  margin: 0 auto;
+  width: 130px;
+  height: 1200px;
   transform-style:preserve-3d;
+  transtion: all .1s;
 }
 .slice {
   position: absolute;
@@ -40,7 +45,6 @@ body,
   background-size: 100% 100%;
   transform-style: preserve-3d;
   backface-visibility:hidden;
-  background-color: #eee;
 }
 #test {
   position: absolute;
