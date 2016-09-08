@@ -1,5 +1,30 @@
-var orienterStartRotateX = 0;
-var orienterStartRotateY = 0;
+let orienterStartRotateX = 0;
+let orienterStartRotateY = 0;
+
+
+
+function throttle(method, delay, duration) {
+    let timer = null;
+    let begin = new Date();
+    return function() {
+        var context = this,
+            args = arguments,
+            current = new Date();
+
+        clearTimeout(timer);
+
+
+        if(current - begin >= duration) {
+            method.apply(context, args);
+            begin = current;
+        } else {
+            timer = setTimeout(() => {
+                method.apply(context, args);
+            }, delay);
+        }
+    }
+
+}
 
 function bodyMoving(handler) {
     let $body = $('body');
@@ -18,6 +43,7 @@ function bodyMoving(handler) {
 
         touch.startX = startX;
         touch.startY = startY;
+        p = touch.clientX;
 
         handler.start && handler.start(touch);
 
@@ -28,9 +54,10 @@ function bodyMoving(handler) {
 
         let touch = e.touches[0];
 
-        touch.pdiffX = touch.clientX - p;
+        touch.pdiffX = Math.abs(touch.clientX - p);
         p = touch.clientX;
 
+        // console.log(touch.pdiffX);
         touch.diffX = touch.clientX - startX;
         touch.diffY = touch.clientY - startY;
 
@@ -42,19 +69,18 @@ function bodyMoving(handler) {
         handler.end && handler.end(touch)
     });
 }
+
+
+
 (function moveToInitZ() {
     
     requestAnimationFrame(moveToInitZ);
     let currentZ = parseInt(anime.getValue(stage, 'translateZ'));
-    let rotateX = anime.getValue(stage, 'rotateX');
 
-
-    if(currentZ <= 0) {
-        currentZ /= 2;
-        $stage.css({
-            transform: `rotateX(${rotateX}) translateZ(${currentZ}px)`,
-        })
-    }
+    let a = (currentZ + initStageTranslateZ) / 2;
+    $stage.css({
+        transform: `translateZ(${a}px)`
+    })
 })()
 
 const bodyOnTouchHandler = {};
@@ -62,13 +88,13 @@ const bodyOnTouchHandler = {};
 bodyOnTouchHandler.start = function(touch) {
     stopOrienter = true;
     this.startRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
-    this.startRotateX = parseFloat(anime.getValue(stage, 'rotateX'));
+    this.startRotateX = parseFloat(anime.getValue(sliceWrap, 'rotateX'));
 }
 
 bodyOnTouchHandler.moving = function(touch) {
 
     let rotateY = this.startRotateY - (touch.diffX / (imageNumber * imageWidth) * 360 * 1.5);
-    let rotateX = this.startRotateX - (touch.diffY / (imageNumber * imageWidth) * 360 * 1.5);
+    let rotateX = this.startRotateX + (touch.diffY / (imageNumber * imageWidth) * 360 * 1.5);
 
     if(rotateX > 40) {
         rotateX = 40;
@@ -78,25 +104,34 @@ bodyOnTouchHandler.moving = function(touch) {
 
 
     $sliceWrap.css({
-        transform: `translateZ(${sliceWrapTranslateZ}px) rotateY(${rotateY}deg)`,
+        transform: `translateZ(${sliceWrapTranslateZ}px) 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg)`,
     });
 
+    throttle((X) => {
 
-    setTimeout(() => {
-        let currentZ = parseFloat(anime.getValue(stage, 'translateZ'));
-        let targetZ = currentZ - Math.abs(touch.diffX);
-        let cZ = targetZ - currentZ;
+        requestAnimationFrame(() => {
+            let z = parseFloat(anime.getValue(stage, 'translateZ'));
 
 
-        $stage.css({
-            transform: `rotateX(${rotateX}deg) translateZ(${(cZ)/1.5}px)`
-        });
-    }, 0)
+
+            let tz = z - X * 3;
+            let a = (z + tz ) / 2;
+            $stage.css({
+                transform: `translateZ(${a}px)`
+            })
+        })
+
+    }, 0, 100)(touch.pdiffX);
+
+    
+
 };
 
 
 bodyOnTouchHandler.end = function() {
-    window.orienterStartRotateX = parseFloat(anime.getValue(stage, 'rotateX'));
+    window.orienterStartRotateX = parseFloat(anime.getValue(sliceWrap, 'rotateX'));
     window.orienterStartRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
     stopOrienter = false;
 }

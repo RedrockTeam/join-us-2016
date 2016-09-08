@@ -3,6 +3,27 @@
 var orienterStartRotateX = 0;
 var orienterStartRotateY = 0;
 
+function throttle(method, delay, duration) {
+    var timer = null;
+    var begin = new Date();
+    return function () {
+        var context = this,
+            args = arguments,
+            current = new Date();
+
+        clearTimeout(timer);
+
+        if (current - begin >= duration) {
+            method.apply(context, args);
+            begin = current;
+        } else {
+            timer = setTimeout(function () {
+                method.apply(context, args);
+            }, delay);
+        }
+    };
+}
+
 function bodyMoving(handler) {
     var $body = $('body');
 
@@ -19,6 +40,7 @@ function bodyMoving(handler) {
 
         touch.startX = startX;
         touch.startY = startY;
+        p = touch.clientX;
 
         handler.start && handler.start(touch);
     });
@@ -28,9 +50,10 @@ function bodyMoving(handler) {
 
         var touch = e.touches[0];
 
-        touch.pdiffX = touch.clientX - p;
+        touch.pdiffX = Math.abs(touch.clientX - p);
         p = touch.clientX;
 
+        // console.log(touch.pdiffX);
         touch.diffX = touch.clientX - startX;
         touch.diffY = touch.clientY - startY;
 
@@ -41,18 +64,16 @@ function bodyMoving(handler) {
         handler.end && handler.end(touch);
     });
 }
+
 (function moveToInitZ() {
 
     requestAnimationFrame(moveToInitZ);
     var currentZ = parseInt(anime.getValue(stage, 'translateZ'));
-    var rotateX = anime.getValue(stage, 'rotateX');
 
-    if (currentZ <= 0) {
-        currentZ /= 2;
-        $stage.css({
-            transform: 'rotateX(' + rotateX + ') translateZ(' + currentZ + 'px)'
-        });
-    }
+    var a = (currentZ + initStageTranslateZ) / 2;
+    $stage.css({
+        transform: 'translateZ(' + a + 'px)'
+    });
 })();
 
 var bodyOnTouchHandler = {};
@@ -60,13 +81,13 @@ var bodyOnTouchHandler = {};
 bodyOnTouchHandler.start = function (touch) {
     stopOrienter = true;
     this.startRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
-    this.startRotateX = parseFloat(anime.getValue(stage, 'rotateX'));
+    this.startRotateX = parseFloat(anime.getValue(sliceWrap, 'rotateX'));
 };
 
 bodyOnTouchHandler.moving = function (touch) {
 
     var rotateY = this.startRotateY - touch.diffX / (imageNumber * imageWidth) * 360 * 1.5;
-    var rotateX = this.startRotateX - touch.diffY / (imageNumber * imageWidth) * 360 * 1.5;
+    var rotateX = this.startRotateX + touch.diffY / (imageNumber * imageWidth) * 360 * 1.5;
 
     if (rotateX > 40) {
         rotateX = 40;
@@ -75,22 +96,25 @@ bodyOnTouchHandler.moving = function (touch) {
     }
 
     $sliceWrap.css({
-        transform: 'translateZ(' + sliceWrapTranslateZ + 'px) rotateY(' + rotateY + 'deg)'
+        transform: 'translateZ(' + sliceWrapTranslateZ + 'px) \n                    rotateX(' + rotateX + 'deg) \n                    rotateY(' + rotateY + 'deg)'
     });
 
-    setTimeout(function () {
-        var currentZ = parseFloat(anime.getValue(stage, 'translateZ'));
-        var targetZ = currentZ - Math.abs(touch.diffX);
-        var cZ = targetZ - currentZ;
+    throttle(function (X) {
 
-        $stage.css({
-            transform: 'rotateX(' + rotateX + 'deg) translateZ(' + cZ / 1.5 + 'px)'
+        requestAnimationFrame(function () {
+            var z = parseFloat(anime.getValue(stage, 'translateZ'));
+
+            var tz = z - X * 3;
+            var a = (z + tz) / 2;
+            $stage.css({
+                transform: 'translateZ(' + a + 'px)'
+            });
         });
-    }, 0);
+    }, 0, 100)(touch.pdiffX);
 };
 
 bodyOnTouchHandler.end = function () {
-    window.orienterStartRotateX = parseFloat(anime.getValue(stage, 'rotateX'));
+    window.orienterStartRotateX = parseFloat(anime.getValue(sliceWrap, 'rotateX'));
     window.orienterStartRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
     stopOrienter = false;
 };

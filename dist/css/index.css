@@ -30,7 +30,7 @@ body {
   -webkit-transform-origin: 50% 50% 0;
       -ms-transform-origin: 50% 50% 0;
           transform-origin: 50% 50% 0;
-  transtion: all .1s;
+  transtion: transform 10s;
 }
 .slice-wrap {
   position: relative;
@@ -39,7 +39,6 @@ body {
   height: 1200px;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transtion: all .1s;
 }
 .slice {
   position: absolute;
@@ -52,6 +51,7 @@ body {
           transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  background-color: #eee;
 }
 #test {
   position: absolute;

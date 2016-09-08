@@ -17,7 +17,7 @@ var $stage = $('.stage'),
 
     function calculateTranlateZ(imageNumber, width) {
         var deg = 360 / imageNumber / 2;
-        return width / 2 / Math.tan(2 * Math.PI * (deg / 360));
+        return width / 2 / Math.tan(2 * Math.PI * (deg / 360)) - 6;
     }
 
     $slices.each(function (index, item) {
@@ -28,6 +28,10 @@ var $stage = $('.stage'),
 
     $sliceWrap.css({
         transform: 'translateZ(' + sliceWrapTranslateZ + 'px) rotateY(' + sliceWrapRotateY + 'deg)'
+    });
+
+    $stage.css({
+        transform: 'translateZ(' + initStageTranslateZ + 'px)'
     });
 })(sliceWrap);
 //# sourceMappingURL=jsmap/init_sence.js.map

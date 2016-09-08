@@ -15,7 +15,7 @@ let $stage = $('.stage'),
 
     function calculateTranlateZ(imageNumber, width) {
         let deg = 360/imageNumber/2;
-        return (width/2) / Math.tan( 2 * Math.PI * (deg / 360));
+        return (width/2) / Math.tan( 2 * Math.PI * (deg / 360))-6;
     }
 
     $slices.each((index, item) => {
@@ -27,5 +27,9 @@ let $stage = $('.stage'),
     $sliceWrap.css({
         transform: `translateZ(${sliceWrapTranslateZ}px) rotateY(${sliceWrapRotateY}deg)`
     });
+
+    $stage.css({
+        transform: `translateZ(${initStageTranslateZ}px)`
+    })
 
 }(sliceWrap));
