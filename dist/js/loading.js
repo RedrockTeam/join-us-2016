@@ -2,6 +2,8 @@
 
 var mask = document.querySelector('.mask');
 // mask.style.width = '0';
+var loadingWrap = document.querySelector('.loading-wrap');
+
 setTimeout(function () {
     mask.style.width = '465px';
 }, 0);
@@ -9,8 +11,18 @@ setTimeout(function () {
 // setTimeout(() => {
 window.onload = function () {
     setTimeout(function () {
-        document.querySelector('#view').style.display = 'block';
-        document.querySelector('.loading-wrap').style.display = 'none';
+        anime({
+            targets: loadingWrap,
+            scale: 0
+        });
+        var view = document.querySelector('#view');
+        setTimeout(function () {
+            anime({
+                targets: view,
+                scale: 1
+            });
+        }, 1000);
+        view.style.display = 'block';
     }, 3000);
 };
 

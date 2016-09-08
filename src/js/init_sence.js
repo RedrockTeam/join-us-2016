@@ -26,7 +26,7 @@ let $stage = $('.stage'),
     });
 
     $sliceWrap.append(`<div class='sky' 
-                            style='width: ${1.3*R}px; 
+                            style='width: ${2*R}px; 
                             height: ${2*R}px;
                             background-image: url("dist/img/loading/100.png");
                             background-size: 100% 100%;
@@ -34,8 +34,8 @@ let $stage = $('.stage'),
 
 
     $sliceWrap.append(`<div class='sky' 
-                            style='width: ${1.3*R}px; 
-                            height: ${2*R}px;
+                            style='width: ${3*R}px; 
+                            height: ${3*R}px;
                             background-image: url("dist/img/loading/100.png");
                             background-size: 100% 100%;
                             transform: rotateX(90deg) translateZ(-600px) translateX(-50%)'></div>`)
