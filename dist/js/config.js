@@ -6,7 +6,7 @@ var imageWidth = 130;
 
 var sliceWrapTranslateZ = 0;
 
-var sliceWrapRotateY = 204;
+var sliceWrapRotateY = 175;
 
 var initStageTranslateZ = 700;
 

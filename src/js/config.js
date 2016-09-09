@@ -4,7 +4,7 @@ const imageWidth = 130;
 
 const sliceWrapTranslateZ = 0;
 
-const sliceWrapRotateY = 204;
+const sliceWrapRotateY = 175;
 
 const initStageTranslateZ = 700;
 
