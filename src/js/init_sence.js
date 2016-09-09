@@ -26,17 +26,17 @@ let $stage = $('.stage'),
     });
 
     $sliceWrap.append(`<div class='sky' 
-                            style='width: ${2*R}px; 
-                            height: ${2*R}px;
-                            background-image: url("dist/img/loading/100.png");
+                            style='width: ${1.7*R}px; 
+                            height: ${1.7*R}px;
+                            background-image: url("dist/img/sky.png");
                             background-size: 100% 100%;
                             transform: rotateX(-90deg) translateZ(-600px) translateX(-50%)'></div>`)
 
 
     $sliceWrap.append(`<div class='sky' 
-                            style='width: ${3*R}px; 
-                            height: ${3*R}px;
-                            background-image: url("dist/img/loading/100.png");
+                            style='width: ${2.5*R}px; 
+                            height: ${2.5*R}px;
+                            background-image: url("dist/img/sky.png");
                             background-size: 100% 100%;
                             transform: rotateX(90deg) translateZ(-600px) translateX(-50%)'></div>`)
 
