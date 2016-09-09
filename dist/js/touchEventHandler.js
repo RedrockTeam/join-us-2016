@@ -70,7 +70,7 @@ function bodyMoving(handler) {
     requestAnimationFrame(moveToInitZ);
     var currentZ = parseInt(anime.getValue(stage, 'translateZ'));
 
-    var a = (currentZ + initStageTranslateZ) / 2;
+    var a = (currentZ + initStageTranslateZ * 2) / 3;
     $stage.css({
         transform: 'translateZ(' + a + 'px)'
     });
@@ -85,21 +85,22 @@ bodyOnTouchHandler.start = function (touch) {
 };
 
 bodyOnTouchHandler.moving = function (touch) {
-
-    var rotateY = this.startRotateY - touch.diffX / (imageNumber * imageWidth) * 360 * 1.5;
-    var rotateX = this.startRotateX + touch.diffY / (imageNumber * imageWidth) * 360 * 1.5;
-
-    if (rotateX > allowRotateX) {
-        rotateX = allowRotateX;
-    } else if (rotateX < -allowRotateX) {
-        rotateX = -allowRotateX;
-    }
-
-    $sliceWrap.css({
-        transform: 'translateZ(' + sliceWrapTranslateZ + 'px) \n                    rotateX(' + rotateX + 'deg) \n                    rotateY(' + rotateY + 'deg)'
-    });
+    var _this = this;
 
     throttle(function (X) {
+
+        var rotateY = _this.startRotateY - touch.diffX / (imageNumber * imageWidth) * 360 * 1.5;
+        var rotateX = _this.startRotateX + touch.diffY / (imageNumber * imageWidth) * 360 * 1.5;
+
+        if (rotateX > allowRotateX) {
+            rotateX = allowRotateX;
+        } else if (rotateX < -allowRotateX) {
+            rotateX = -allowRotateX;
+        }
+
+        $sliceWrap.css({
+            transform: 'translateZ(' + sliceWrapTranslateZ + 'px) \n                    rotateX(' + rotateX + 'deg) \n                    rotateY(' + rotateY + 'deg)'
+        });
 
         requestAnimationFrame(function () {
             var z = parseFloat(anime.getValue(stage, 'translateZ'));

@@ -77,7 +77,7 @@ function bodyMoving(handler) {
     requestAnimationFrame(moveToInitZ);
     let currentZ = parseInt(anime.getValue(stage, 'translateZ'));
 
-    let a = (currentZ + initStageTranslateZ) / 2;
+    let a = (currentZ + initStageTranslateZ*2) / 3;
     $stage.css({
         transform: `translateZ(${a}px)`
     })
@@ -92,6 +92,7 @@ bodyOnTouchHandler.start = function(touch) {
 }
 
 bodyOnTouchHandler.moving = function(touch) {
+    throttle((X) => {
 
     let rotateY = this.startRotateY - (touch.diffX / (imageNumber * imageWidth) * 360 * 1.5);
     let rotateX = this.startRotateX + (touch.diffY / (imageNumber * imageWidth) * 360 * 1.5);
@@ -109,7 +110,6 @@ bodyOnTouchHandler.moving = function(touch) {
                     rotateY(${rotateY}deg)`,
     });
 
-    throttle((X) => {
 
         requestAnimationFrame(() => {
             let z = parseFloat(anime.getValue(stage, 'translateZ'));
