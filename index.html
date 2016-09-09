@@ -33,6 +33,18 @@
         </div>
     </div>
 
+    <script>
+        function isWX(){
+            var ua = navigator.userAgent.toLowerCase();
+            return (/micromessenger/.test(ua)) ? true : false;
+        }
+        if(!isWX()) {
+            alert('请使用微信浏览器打开~');
+            document.body.style.display = 'none';
+            document.write('<h1>请使用微信浏览器打开</h1>');
+        }
+    </script>
+
     <audio id="audio" controls="controls" style="display: none;position: absolute; top: 0; left: 0;" autoplay="true">  
         <source src="jsxz.mp3" type="audio/mpeg">
     </audio>
