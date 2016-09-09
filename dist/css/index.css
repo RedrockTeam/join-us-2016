@@ -32,7 +32,8 @@ body {
   -webkit-transform-origin: 50% 50% 0;
       -ms-transform-origin: 50% 50% 0;
           transform-origin: 50% 50% 0;
-  transtion: transform 10s;
+  -webkit-transition: all .5s;
+  transition: all .5s;
 }
 .slice-wrap {
   position: relative;

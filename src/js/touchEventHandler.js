@@ -116,7 +116,7 @@ bodyOnTouchHandler.moving = function(touch) {
 
 
 
-            let tz = z - X * 3;
+            let tz = z - X * 30;
             let a = (z + tz ) / 2;
             $stage.css({
                 transform: `translateZ(${a}px)`

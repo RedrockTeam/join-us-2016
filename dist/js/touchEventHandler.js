@@ -104,7 +104,7 @@ bodyOnTouchHandler.moving = function (touch) {
         requestAnimationFrame(function () {
             var z = parseFloat(anime.getValue(stage, 'translateZ'));
 
-            var tz = z - X * 3;
+            var tz = z - X * 30;
             var a = (z + tz) / 2;
             $stage.css({
                 transform: 'translateZ(' + a + 'px)'

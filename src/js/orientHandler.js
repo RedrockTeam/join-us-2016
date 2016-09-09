@@ -1,8 +1,9 @@
-    let first = true;
+let first = true;
 function orienter(handler) {
     let  o = new Orienter();
     let latitude = 0;
     let longitude = 0;
+    let p = 0;
     o.handler = (obj) => {
         if(first) {
             latitude = obj.lat; // 维度
@@ -12,14 +13,18 @@ function orienter(handler) {
                 Y: latitude,
                 X: longitude
             });
+            p = longitude;
             return;
         }
 
         let diffY = obj.lat - latitude;
         let diffX = obj.lon - longitude;
+        let pdiffX = Math.abs(longitude - p);
+
         handler.moving({
             diffX,
-            diffY
+            diffY,
+            pdiffX
         });
     }
     o.init();
@@ -32,10 +37,13 @@ orienter({
     }, 
     moving: (pos) => {
 
+
         if(stopOrienter === true) {
             first = true;    
             return;
         }
+
+
         let rotateX = orienterStartRotateX + (pos.diffY/2);
         let rotateY = orienterStartRotateY - pos.diffX;
 
@@ -52,6 +60,19 @@ orienter({
         })
 
 
+        throttle((X) => {
+
+            requestAnimationFrame(() => {
+                let z = parseFloat(anime.getValue(stage, 'translateZ'));
+
+                let tz = z - X * 3;
+                let a = (z + tz ) / 2;
+                $stage.css({
+                    transform: `translateZ(${a}px)`
+                })
+            })
+
+        }, 0, 100)(pos.pdiffX);
 
 
         $('#test').html(`diffX=${pos.diffX}<br>diffY=${pos.diffY}`);
