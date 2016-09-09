@@ -1,6 +1,6 @@
 "use strict";
 
-var imageNumber = 24;
+var imageNumber = 28;
 
 var imageWidth = 130;
 

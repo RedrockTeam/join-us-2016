@@ -1,4 +1,4 @@
-const imageNumber = 24;
+const imageNumber = 28;
 
 const imageWidth = 130;
 
