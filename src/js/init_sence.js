@@ -20,6 +20,7 @@ let $stage = $('.stage'),
     let R = calculateR(imageNumber, imageWidth);
 
     $slices.each((index, item) => {
+
         $(item).css({
             transform: `rotateY(${-360/imageNumber*index}deg) translateZ(-${R}px) translateY(-50px)`
         });
@@ -38,7 +39,18 @@ let $stage = $('.stage'),
                             height: ${2.5*R}px;
                             background-image: url("dist/img/sky.png");
                             background-size: 100% 100%;
-                            transform: rotateX(90deg) translateZ(-600px) translateX(-50%)'></div>`)
+                            transform: rotateX(90deg) translateZ(-600px) translateX(-50%)'></div>`);
+
+
+
+    $sliceWrap.append(`<a class="link" href="${signUpLink}" style="
+                            z-index: 10000;
+                            display: inline-block;
+                            width: 200px; 
+                            height: 75px;
+                            transform: rotateY(-325.429deg) translateZ(-570.891px) translateY(-1787px);"><a>`);
+
+
 
     $sliceWrap.css({
         transform: `translateZ(${sliceWrapTranslateZ}px) rotateY(${sliceWrapRotateY}deg)`

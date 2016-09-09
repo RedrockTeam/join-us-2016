@@ -10,4 +10,7 @@ const initStageTranslateZ = 700;
 
 const allowRotateX = 50;
 
+const signUpLink = 'http://hongyan.cqupt.edu.cn/2016joinus';
+
 let stopOrienter = false;
+
