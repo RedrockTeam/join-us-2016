@@ -28,8 +28,9 @@
                 return flag;
             }
             if(IsPC()) {
-                alert('请使用手机打开页面');
+                document.body.innerHTML += '<h1 style="text-align: center; margin-top: 200px">请使用手机打开页面</h1>';
                 document.querySelector('#container').style.display = 'none';
+                document.body.style.backgroundImage = 'url("dist/img/QR.png")'
             }
         </script>
         <div class="loading-wrap">
