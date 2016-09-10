@@ -12,7 +12,7 @@ var initStageTranslateZ = 700;
 
 var allowRotateX = 50;
 
-var signUpLink = 'http://hongyan.cqupt.edu.cn/2016joinus';
+var signUpLink = '#" onclick=alert("功能尚未开启,敬请期待")';
 
 var stopOrienter = false;
 
@@ -51,7 +51,7 @@ var $stage = $('.stage'),
 
     $sliceWrap.append('<div class=\'sky\' \n                            style=\'width: ' + 2.5 * R + 'px; \n                            height: ' + 2.5 * R + 'px;\n                            background-image: url("dist/img/sky.png");\n                            background-size: 100% 100%;\n                            transform: rotateX(90deg) translateZ(-600px) translateX(-50%)\'></div>');
 
-    $sliceWrap.append('<a class="link" href="' + signUpLink + '" style="\n                            z-index: 10000;\n                            display: inline-block;\n                            width: 200px; \n                            height: 75px;\n                            transform: rotateY(-325.429deg) translateZ(-570.891px) translateY(-1787px);"><a>');
+    $sliceWrap.append('<a class="link" href=' + signUpLink + ' style="\n                            z-index: 10000;\n                            display: inline-block;\n                            width: 200px; \n                            height: 75px;\n                            transform: rotateY(-325.429deg) translateZ(-570.891px) translateY(-1787px);"><a>');
 
     $sliceWrap.css({
         transform: 'translateZ(' + sliceWrapTranslateZ + 'px) rotateY(' + sliceWrapRotateY + 'deg)'

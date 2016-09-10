@@ -10,7 +10,7 @@ const initStageTranslateZ = 700;
 
 const allowRotateX = 50;
 
-const signUpLink = 'http://hongyan.cqupt.edu.cn/2016joinus';
+const signUpLink = '#" onclick=alert("功能尚未开启,敬请期待")';
 
 let stopOrienter = false;
 
@@ -65,7 +65,7 @@ let $stage = $('.stage'),
 
 
 
-    $sliceWrap.append(`<a class="link" href="${signUpLink}" style="
+    $sliceWrap.append(`<a class="link" href=${signUpLink} style="
                             z-index: 10000;
                             display: inline-block;
                             width: 200px; 
