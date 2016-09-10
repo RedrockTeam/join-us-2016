@@ -29,7 +29,6 @@ var $stage = $('.stage'),
     for (var i = 1; i <= imageNumber; i++) {
         str += '<div class="slice"></div>';
     }
-    console.log(str);
 
     $sliceWrap.html(str);
     var $slices = $sliceWrap.find('.slice');

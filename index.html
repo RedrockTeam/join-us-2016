@@ -55,14 +55,14 @@
     </div>
 
 
-    <audio id="audio" controls="controls" style="display: none;position: absolute; top: 0; left: 0;" autoplay="true">  
-        <source src="jsxz.mp3" type="audio/mpeg">
+    <audio id="audio" src="jsxz.mp3"  type="audio/mpeg" controls="controls" hidden="true" loop preload="auto">  
     </audio>
     <script>
         var audio = document.querySelector('#audio');
+        audio.play();
         window.addEventListener('touchstart', function() {
             audio.play();
-        })
+        });
     </script>
     
     <!-- <div id="test"></div> -->
