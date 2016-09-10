@@ -12,10 +12,15 @@ const LessAutoprefix = require('less-plugin-autoprefix');
 const autoprefix = new LessAutoprefix({ 
     browsers: ['> 1%', 'ie >= 8', 'Chrome > 36', 'Firefox >= 20', 'iOS >= 7'],
 });
+const imageResize = require('gulp-image-resize');
 
+const base64 = require('gulp-base64');
 
+const imagemin = require('gulp-imagemin');
 // browser-sync
 const browserSync = require('browser-sync').create();
+
+const cssmin = require('gulp-minify-css');
 
 
 gulp.task('less', () => {
@@ -24,6 +29,10 @@ gulp.task('less', () => {
         .pipe(less({
           plugins: [autoprefix]
         }).on('error', (error) => console.log(error)))
+        .pipe(base64({
+              maxImageSize: 80*1024, // bytes 
+        }))
+        .pipe(cssmin())
         .pipe(sourcemaps.write('./cssmap'))
         .pipe(gulp.dest('./dist/css'))
 });
@@ -48,7 +57,17 @@ gulp.task('watch', () => {
     gulp.watch('./src/js/*.js', ['toes5', browserSync.reload]);
 });
 
-
+gulp.task('img', () => {
+    gulp.src('./src/img/*.png')
+    // .pipe(imageResize({
+    //   width : 100,
+    //   height : 1000,
+    //   crop : false,
+    //   upscale : true
+    // }))
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img/slice/'));
+})
 
 
 gulp.task('build', ['less', 'toes5']);

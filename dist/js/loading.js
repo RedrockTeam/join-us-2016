@@ -8,7 +8,6 @@ setTimeout(function () {
     mask.style.width = '465px';
 }, 0);
 
-// setTimeout(() => {
 window.onload = function () {
     setTimeout(function () {
         anime.speed = .5;
@@ -22,10 +21,8 @@ window.onload = function () {
                 targets: view,
                 scale: 1
             });
-        }, 1000);
+        }, 500);
         view.style.display = 'block';
     }, 3000);
 };
-
-// }, 3000)
 //# sourceMappingURL=jsmap/loading.js.map

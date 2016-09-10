@@ -1,23 +1,40 @@
 'use strict';
 
+var imageNumber = 28;
+
+var imageWidth = 130;
+
+var sliceWrapTranslateZ = 0;
+
+var sliceWrapRotateY = 175;
+
+var initStageTranslateZ = 700;
+
+var allowRotateX = 50;
+
+var signUpLink = 'http://hongyan.cqupt.edu.cn/2016joinus';
+
+var stopOrienter = false;
+
 var $sliceWrap = $('.slice-wrap'),
     sliceWrap = $sliceWrap[0];
 
 var $stage = $('.stage'),
     stage = $stage[0];
 
+// 初始化
 (function (sliceWrap) {
     var str = '';
 
     for (var i = 1; i <= imageNumber; i++) {
-        str += '<div class="slice" style="background-image:url(dist/img/slice/' + i + '.png)"></div>';
+        str += '<div class="slice"></div>';
     }
     $sliceWrap.html(str);
     var $slices = $sliceWrap.find('.slice');
 
     function calculateR(imageNumber, width) {
         var deg = 360 / imageNumber / 2;
-        return width / 2 / Math.tan(2 * Math.PI * (deg / 360)) - 6;
+        return width / 2 / Math.tan(2 * Math.PI * (deg / 360)) - 10;
     }
     var R = calculateR(imageNumber, imageWidth);
 
@@ -42,4 +59,34 @@ var $stage = $('.stage'),
         transform: 'translateZ(' + initStageTranslateZ + 'px)'
     });
 })(sliceWrap);
+
+// requestAnimationFrame
+(function () {
+    'use strict';
+
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || // Webkit中此取消方法的名字变了
+        window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function (callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+            var id = window.setTimeout(function () {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function (id) {
+            clearTimeout(id);
+        };
+    }
+})();
 //# sourceMappingURL=jsmap/init_sence.js.map
