@@ -1,6 +1,6 @@
-const imageNumber = 28;
+const imageNumber = 30;
 
-const imageWidth = 130;
+const imageWidth = 121.3;
 
 const sliceWrapTranslateZ = 0;
 

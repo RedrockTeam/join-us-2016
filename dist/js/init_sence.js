@@ -1,8 +1,8 @@
 'use strict';
 
-var imageNumber = 28;
+var imageNumber = 30;
 
-var imageWidth = 130;
+var imageWidth = 121.3;
 
 var sliceWrapTranslateZ = 0;
 
