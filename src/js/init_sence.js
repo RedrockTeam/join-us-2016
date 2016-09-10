@@ -24,12 +24,14 @@ let $stage = $('.stage'),
 
 
 // 初始化
-(function(sliceWrap) {
+(function() {
     let str = '';
 
     for(let i = 1; i <= imageNumber; i ++) {
         str += `<div class="slice"></div>`;
     }
+    console.log(str);
+
     $sliceWrap.html(str);
     let $slices = $sliceWrap.find('.slice');
 
@@ -80,7 +82,7 @@ let $stage = $('.stage'),
         transform: `translateZ(${initStageTranslateZ}px)`
     })
 
-}(sliceWrap));
+}());
 
 
 

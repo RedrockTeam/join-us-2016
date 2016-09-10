@@ -23,12 +23,14 @@ var $stage = $('.stage'),
     stage = $stage[0];
 
 // 初始化
-(function (sliceWrap) {
+(function () {
     var str = '';
 
     for (var i = 1; i <= imageNumber; i++) {
         str += '<div class="slice"></div>';
     }
+    console.log(str);
+
     $sliceWrap.html(str);
     var $slices = $sliceWrap.find('.slice');
 
@@ -58,7 +60,7 @@ var $stage = $('.stage'),
     $stage.css({
         transform: 'translateZ(' + initStageTranslateZ + 'px)'
     });
-})(sliceWrap);
+})();
 
 // requestAnimationFrame
 (function () {
