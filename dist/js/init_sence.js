@@ -12,7 +12,7 @@ var initStageTranslateZ = 700;
 
 var allowRotateX = 50;
 
-var signUpLink = '#" onclick=alert("功能尚未开启,敬请期待")';
+var signUpLink = '#" onclick=alert("马上报名(9月11日19点2117宣讲会开始报名)")';
 
 var stopOrienter = false;
 

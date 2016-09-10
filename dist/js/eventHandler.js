@@ -3,26 +3,27 @@
 var orienterStartRotateX = 0;
 var orienterStartRotateY = 0;
 
-function throttle(method, delay, duration) {
+var throttle = function throttle(fn, delay, mustRunDelay) {
     var timer = null;
-    var begin = new Date();
+    var t_start;
     return function () {
         var context = this,
             args = arguments,
-            current = new Date();
-
+            t_curr = +new Date();
         clearTimeout(timer);
-
-        if (current - begin >= duration) {
-            method.apply(context, args);
-            begin = current;
+        if (!t_start) {
+            t_start = t_curr;
+        }
+        if (t_curr - t_start >= mustRunDelay) {
+            fn.apply(context, args);
+            t_start = t_curr;
         } else {
             timer = setTimeout(function () {
-                method.apply(context, args);
+                fn.apply(context, args);
             }, delay);
         }
     };
-}
+};
 
 function bodyMoving(handler) {
     var $body = $('body');

@@ -10,7 +10,7 @@ const initStageTranslateZ = 700;
 
 const allowRotateX = 50;
 
-const signUpLink = '#" onclick=alert("功能尚未开启,敬请期待")';
+const signUpLink = '#" onclick=alert("马上报名(9月11日19点2117宣讲会开始报名)")';
 
 let stopOrienter = false;
 
