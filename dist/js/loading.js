@@ -16,13 +16,14 @@ window.onload = function () {
             scale: 0
         });
         var view = document.querySelector('#view');
+
+        view.style.display = 'block';
         setTimeout(function () {
             anime({
                 targets: view,
                 scale: 1
             });
         }, 500);
-        view.style.display = 'block';
     }, 3000);
 };
 //# sourceMappingURL=jsmap/loading.js.map

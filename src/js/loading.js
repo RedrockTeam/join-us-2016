@@ -15,13 +15,14 @@ window.onload = () => {
             scale: 0,
         });
         let view = document.querySelector('#view');
+        
+        view.style.display = 'block';
         setTimeout(() => {
             anime({
                 targets: view,
                 scale: 1
             })
         }, 500);
-        view.style.display = 'block';
         
         
     }, 3000)
