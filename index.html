@@ -28,7 +28,6 @@
                 return flag;
             }
             if(IsPC()) {
-                document.body.innerHTML += '<h1 style="text-align: center; margin-top: 200px">请使用手机打开页面</h1>';
                 document.querySelector('#container').style.display = 'none';
                 document.body.style.backgroundImage = 'url("dist/img/QR.png")'
             }
@@ -74,8 +73,9 @@
         })();
     </script>
 
-    <!-- <div id="test"></div> -->
+     <div id="test"></div> 
     <script src="dist/js/zepto.min.js"></script>
+    <script src="dist/js/fx.js"></script>
     <script src="dist/js/init_sence.js"></script>
     <script src="dist/js/anime.min.js"></script>
     <script src="dist/js/orienter.min.js"></script>

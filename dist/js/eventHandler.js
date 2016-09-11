@@ -136,7 +136,7 @@ function orienter(handler) {
             latitude = obj.lat; // 维度
             longitude = obj.lon; // 经度
             first = false;
-            handler.start({
+            handler.start && handler.start({
                 Y: latitude,
                 X: longitude
             });
@@ -148,7 +148,8 @@ function orienter(handler) {
         var diffX = obj.lon - longitude;
         var pdiffX = Math.abs(longitude - p);
 
-        handler.moving({
+        $('#test').html('pdiffX, ' + pdiffX);
+        handler.moving && handler.moving({
             diffX: diffX,
             diffY: diffY,
             pdiffX: pdiffX
@@ -162,7 +163,8 @@ orienter({
         orienterStartRotateX = parseFloat(anime.getValue(sliceWrap, 'rotateX'));
         orienterStartRotateY = parseFloat(anime.getValue(sliceWrap, 'rotateY'));
     },
-    moving: function moving(pos) {
+
+    moving: throttle(function (pos) {
 
         if (stopOrienter === true) {
             first = true;
@@ -171,6 +173,7 @@ orienter({
 
         var rotateX = orienterStartRotateX + pos.diffY / 2;
         var rotateY = orienterStartRotateY - pos.diffX;
+        var X = pos.pdiffX;
 
         if (rotateX > 40) {
             rotateX = 40;
@@ -178,24 +181,29 @@ orienter({
             rotateX = -40;
         }
 
+        console.log(X);
+
+        // $sliceWrap.animate({
+        //     translateZ: `${sliceWrapTranslateZ}px`,
+        //     rotateX: `${rotateX}deg`,
+        //     rotateY: `${rotateY}deg`
+        // }, 0)
+
+
         $sliceWrap.css({
             transform: 'translateZ(' + sliceWrapTranslateZ + 'px)  \n                        rotateX(' + rotateX + 'deg) \n                        rotateY(' + rotateY + 'deg)'
         });
 
-        throttle(function (X) {
+        requestAnimationFrame(function () {
+            var z = parseFloat(anime.getValue(stage, 'translateZ'));
 
-            requestAnimationFrame(function () {
-                var z = parseFloat(anime.getValue(stage, 'translateZ'));
-
-                var tz = z - X * 3;
-                var a = (z + tz) / 2;
-                $stage.css({
-                    transform: 'translateZ(' + a + 'px)'
-                });
+            var tz = z - X * 3;
+            var a = (z + tz) / 2;
+            $stage.css({
+                transform: 'translateZ(' + a + 'px)'
             });
-        }, 0, 100)(pos.pdiffX);
+        });
+    }, 1000 / 60, 500)
 
-        $('#test').html('diffX=' + pos.diffX + '<br>diffY=' + pos.diffY);
-    }
 });
 //# sourceMappingURL=jsmap/eventHandler.js.map
