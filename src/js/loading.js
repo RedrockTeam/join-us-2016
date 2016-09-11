@@ -4,7 +4,7 @@ var mask = document.querySelector('.mask');
 let loadingWrap = document.querySelector('.loading-wrap');
 
 setTimeout(() => {
-    mask.style.width = '360px';
+    mask.style.width = '300px';
 }, 0);
 
 window.onload = () => {
@@ -19,13 +19,11 @@ window.onload = () => {
         let view = document.querySelector('#view');
 
         view.style.visibility = 'visible';
-        setTimeout(() => {
-            anime({
-                targets: view,
-                scale: 1
-            })
-        }, 500);
+        anime({
+            targets: view,
+            scale: 1
+        })
         
         
-    }, 3000)
+    }, 1000)
 }

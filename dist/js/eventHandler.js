@@ -54,7 +54,6 @@ function bodyMoving(handler) {
         touch.pdiffX = Math.abs(touch.clientX - p);
         p = touch.clientX;
 
-        // console.log(touch.pdiffX);
         touch.diffX = touch.clientX - startX;
         touch.diffY = touch.clientY - startY;
 
@@ -148,7 +147,6 @@ function orienter(handler) {
         var diffX = obj.lon - longitude;
         var pdiffX = Math.abs(longitude - p);
 
-        $('#test').html('pdiffX, ' + pdiffX);
         handler.moving && handler.moving({
             diffX: diffX,
             diffY: diffY,
@@ -180,15 +178,6 @@ orienter({
         } else if (rotateX < -40) {
             rotateX = -40;
         }
-
-        console.log(X);
-
-        // $sliceWrap.animate({
-        //     translateZ: `${sliceWrapTranslateZ}px`,
-        //     rotateX: `${rotateX}deg`,
-        //     rotateY: `${rotateY}deg`
-        // }, 0)
-
 
         $sliceWrap.css({
             transform: 'translateZ(' + sliceWrapTranslateZ + 'px)  \n                        rotateX(' + rotateX + 'deg) \n                        rotateY(' + rotateY + 'deg)'

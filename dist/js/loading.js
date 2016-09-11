@@ -5,7 +5,7 @@ var mask = document.querySelector('.mask');
 var loadingWrap = document.querySelector('.loading-wrap');
 
 setTimeout(function () {
-    mask.style.width = '360px';
+    mask.style.width = '300px';
 }, 0);
 
 window.onload = function () {
@@ -20,12 +20,10 @@ window.onload = function () {
         var view = document.querySelector('#view');
 
         view.style.visibility = 'visible';
-        setTimeout(function () {
-            anime({
-                targets: view,
-                scale: 1
-            });
-        }, 500);
-    }, 3000);
+        anime({
+            targets: view,
+            scale: 1
+        });
+    }, 1000);
 };
 //# sourceMappingURL=jsmap/loading.js.map
