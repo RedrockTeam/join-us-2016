@@ -4,10 +4,12 @@ var mask = document.querySelector('.mask');
 let loadingWrap = document.querySelector('.loading-wrap');
 
 setTimeout(() => {
-    mask.style.width = '465px'
+    mask.style.width = '360px';
 }, 0);
 
 window.onload = () => {
+    mask.style.width = '465px';
+
     setTimeout(() => {
         anime.speed = .5;
         anime({
@@ -15,8 +17,8 @@ window.onload = () => {
             scale: 0,
         });
         let view = document.querySelector('#view');
-        
-        view.style.display = 'block';
+
+        view.style.visibility = 'visible';
         setTimeout(() => {
             anime({
                 targets: view,
