@@ -12,7 +12,7 @@ var initStageTranslateZ = 700;
 
 var allowRotateX = 50;
 
-var signUpLink = '#" onclick=alert("马上报名(9月11日19点2117宣讲会开始报名)")';
+var signUpLink = 'http://enroll.lot.cat/enroll/index';
 
 var stopOrienter = false;
 
